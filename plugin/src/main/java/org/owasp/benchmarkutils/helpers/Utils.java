@@ -40,7 +40,9 @@ import java.nio.file.StandardCopyOption;
 import java.nio.file.attribute.BasicFileAttributes;
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.jar.JarEntry;
 import java.util.jar.JarFile;
 import javax.xml.bind.JAXBContext;
@@ -72,6 +74,19 @@ public class Utils {
                     "ERROR: couldn't set http://apache.org/xml/features/disallow-doctype-decl");
             e.printStackTrace();
         }
+    }
+
+    /* Map each test case with the relative ID */
+    public static Map<Integer, String> idTestCaseMap = new HashMap<Integer, String>();
+
+    public static Integer getIdFromString(String s) {
+        int ret = -1;
+        for (Map.Entry<Integer, String> entry : idTestCaseMap.entrySet()) {
+            if (entry.getValue().equals(s)) {
+                ret = entry.getKey();
+            }
+        }
+        return ret;
     }
 
     /**
